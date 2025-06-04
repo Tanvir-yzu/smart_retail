@@ -7,6 +7,9 @@ from .forms import SupplierForm, ProductForm, OrderForm
 
 # Create your views here.
 # Supplier Views
+class Homeview(ListView):
+    model = Supplier
+    template_name = 'home.html'
 class SupplierListView(ListView):
     model = Supplier
     template_name = 'supplychain/supplier_list.html'
