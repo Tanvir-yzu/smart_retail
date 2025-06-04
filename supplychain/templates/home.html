@@ -1,53 +1,251 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supply Chain Management</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smart Retail Store — Modern Unique Interface</title>
+
+  <!-- Link external CSS -->
+  <link href="css/styles.css" rel="stylesheet" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+  /* Feedback Modal Custom Styles */
+  #feedback-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 200000;
+    font-family: 'Poppins', sans-serif;
+  }
+  #feedback-modal.active {
+    display: flex;
+  }
+  #feedback-form {
+    background: white;
+    border-radius: 24px;
+    max-width: 420px;
+    width: 90%;
+    padding: 2.5rem 2.5rem 3rem;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+    position: relative;
+  }
+  #feedback-form h3 {
+    font-weight: 900;
+    color: #2f80ed;
+    font-size: 1.9rem;
+    text-align: center;
+    margin-bottom: 1.8rem;
+    user-select: none;
+  }
+  #close-feedback-btn {
+    position: absolute;
+    top: 15px;
+    right: 18px;
+    background: #2f80ed;
+    border: none;
+    font-size: 1.8rem;
+    color: white;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(47,128,237,0.5);
+    transition: background 0.3s ease;
+  }
+  #close-feedback-btn:hover {
+    background: #1c5fcc;
+  }
+  #feedback-form input[type="text"],
+  #feedback-form input[type="email"],
+  #feedback-form textarea {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    font-size: 1.1rem;
+    border-radius: 14px;
+    border: 1.8px solid #dbe7ff;
+    margin-bottom: 1.5rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 3px 10px rgba(47,128,237,0.1);
+    resize: vertical;
+    font-family: 'Poppins', sans-serif;
+  }
+  #feedback-form input[type="text"]:focus,
+  #feedback-form input[type="email"]:focus,
+  #feedback-form textarea:focus {
+    border-color: #2f80ed;
+    box-shadow: 0 0 15px rgba(47,128,237,0.5);
+  }
+  #feedback-form button[type="submit"] {
+    width: 100%;
+    background: linear-gradient(135deg, #2f80ed, #56a3ff);
+    color: white;
+    font-weight: 800;
+    padding: 1.2rem;
+    font-size: 1.3rem;
+    border-radius: 60px;
+    border: none;
+    box-shadow: 0 8px 30px rgba(47,128,237,0.7);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.4s ease, box-shadow 0.4s ease;
+  }
+  #feedback-form button[type="submit"]:hover,
+  #feedback-form button[type="submit"]:focus {
+    background: linear-gradient(135deg, #56a3ff, #2f80ed);
+    box-shadow: 0 10px 40px rgba(47,128,237,0.9);
+    outline: none;
+  }
+  </style>
+
 </head>
 <body>
-    
 
-    <div class="container mt-4">
-        <h1 class="text-center mb-4">Welcome to Supply Chain Management</h1>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Products</h5>
-                        <p class="card-text">Manage your product catalog</p>
-                       
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Orders</h5>
-                        <p class="card-text">Track and manage orders</p>
-                     
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Inventory</h5>
-                        <p class="card-text">Monitor inventory levels</p>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
+<header>
+  <div class="logo" tabindex="0">Smart Retail</div>
+  <nav id="navbar" role="navigation" aria-label="Primary">
+    <a href="#new" class="nav-link">New</a>
+    <a href="#men" class="nav-link">Men</a>
+    <a href="#women" class="nav-link">Women</a>
+    <a href="#kids" class="nav-link">Kids</a>
+    <a href="#sale" class="nav-link">Sale</a>
+    <a href="login.html" class="admin-login" tabindex="0">Admin Login</a>
+  </nav>
+  <div id="hamburger" class="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" tabindex="0">
+    <span></span><span></span><span></span>
+  </div>
+</header>
+
+<section class="hero" aria-label="Featured products slider">
+
+  <!-- Slide 1 -->
+  <div class="slide active" aria-hidden="false" style="background-image: url('images/product_2.jpg');">
+    <div class="slide-overlay">
+      <h1>Product</h1>
+      <p>High-quality shoes to keep you comfortable.</p>
+      <button onclick="alert('Shop Product 1')" aria-label="Shop Product 1">Shop</button>
+    </div>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="slide" aria-hidden="true" style="background-image: url('images/accessory_4.jpg');">
+    <div class="slide-overlay">
+      <h1>Accessory</h1>
+      <p>Experience unmatched style and comfort.</p>
+      <button onclick="alert('Shop Product 2')" aria-label="Shop Product 2">Shop</button>
+    </div>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="slide" aria-hidden="true" style="background-image: url('images/accessory_8.jpg');">
+    <div class="slide-overlay">
+      <h1>Accessory</h1>
+      <p>Perfect blend of design and durability.</p>
+      <button onclick="alert('Shop Product 3')" aria-label="Shop Product 3">Shop</button>
+    </div>
+  </div>
+
+</section>
+
+<!-- Controls -->
+<div class="slider-controls" role="tablist" aria-label="Slider controls">
+  <button class="slider-dot active" role="tab" tabindex="0" aria-selected="true" aria-controls="slide1" aria-label="Slide 1"></button>
+  <button class="slider-dot" role="tab" tabindex="-1" aria-selected="false" aria-controls="slide2" aria-label="Slide 2"></button>
+  <button class="slider-dot" role="tab" tabindex="-1" aria-selected="false" aria-controls="slide3" aria-label="Slide 3"></button>
+</div>
+
+<!-- Navigation arrows -->
+<button class="slider-nav prev" aria-label="Previous slide">&#10094;</button>
+<button class="slider-nav next" aria-label="Next slide">&#10095;</button>
+
+<div class="category-bar" role="region" aria-label="Product categories">
+  <button class="category-btn active" data-category="all" aria-pressed="true">All</button>
+  <button class="category-btn" data-category="Shoes" aria-pressed="false">Shoes</button>
+  <button class="category-btn" data-category="Apparel" aria-pressed="false">Apparel</button>
+  <button class="category-btn" data-category="Accessories" aria-pressed="false">Accessories</button>
+</div>
+
+<section class="featured" aria-label="Featured Products">
+  <h2>Featured Products</h2>
+  <div class="products-grid" id="featured-products" tabindex="0" aria-live="polite" aria-relevant="additions">
+    <!-- Product cards inserted by JS -->
+  </div>
+</section>
+
+<aside id="cart-sidebar" aria-label="Shopping cart" aria-hidden="true" role="region">
+  <button id="close-cart-btn" aria-label="Close cart sidebar">&times;</button>
+  <h3>Your Cart</h3>
+  <div id="cart-items" role="list" aria-live="polite" aria-relevant="additions"></div>
+  <div id="cart-total" aria-live="polite">Total: $0.00</div>
+</aside>
+
+<div id="feedback-modal" role="dialog" aria-modal="true" aria-labelledby="feedback-title" aria-hidden="true">
+  <form id="feedback-form" novalidate>
+    <button id="close-feedback-btn" aria-label="Close feedback form">&times;</button>
+    <h3 id="feedback-title">Send Us Your Feedback</h3>
+    <input type="text" id="name" placeholder="Your Name" aria-label="Your Name" required />
+    <input type="email" id="email" placeholder="Your Email" aria-label="Your Email" required />
+    <textarea id="feedback" placeholder="Your Feedback" aria-label="Your Feedback" required></textarea>
+    <button type="submit">Submit Feedback</button>
+  </form>
+</div>
+
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-section about">
+      <h3>About</h3>
+      <p>Your one-stop solution for the latest and best in retail products — shoes, apparel, and accessories.</p>
+      <div class="contact-info">
+        <p><strong>Address:</strong> 196 Hanjiang District, Yangzhou, China</p>
+        <p><strong>Phone:</strong> +8613773509731</p>
+        <p><strong>Email:</strong> support@smartretail.com</p>
+      </div>
+      <div class="socials" aria-label="Social media links">
+        <a href="#" aria-label="Facebook" tabindex="0" target="_blank" rel="noopener noreferrer">📘</a>
+        <a href="#" aria-label="Twitter" tabindex="0" target="_blank" rel="noopener noreferrer">🐦</a>
+        <a href="#" aria-label="Instagram" tabindex="0" target="_blank" rel="noopener noreferrer">📸</a>
+        <a href="#" aria-label="LinkedIn" tabindex="0" target="_blank" rel="noopener noreferrer">🔗</a>
+        <a href="#" aria-label="YouTube" tabindex="0" target="_blank" rel="noopener noreferrer">▶️</a>
+      </div>
     </div>
 
-    <footer class="bg-dark text-white text-center py-3 mt-5">
-        <p>&copy; 2024 Supply Chain Management. All rights reserved.</p>
-    </footer>
+    <div class="footer-section links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#new">New Arrivals</a></li>
+        <li><a href="#men">Men's Collection</a></li>
+        <li><a href="#women">Women's Collection</a></li>
+        <li><a href="#kids">Kids' Collection</a></li>
+        <li><a href="#sale">Sale</a></li>
+        <li><a href="login.html">Admin Login</a></li>
+      </ul>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="footer-section newsletter-section">
+      <h3>Subscribe to Our Newsletter</h3>
+      <p>Get the latest updates and offers directly in your inbox.</p>
+      <form class="newsletter" aria-label="Newsletter subscription form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
+        <input type="email" placeholder="Your email address" aria-required="true" required />
+        <button type="submit" class="subscribe-btn" aria-label="Subscribe to newsletter">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Smart Retail Supply Chain. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Link external JS -->
+<script src="js/scripts.js"></script>
+
 </body>
 </html>
