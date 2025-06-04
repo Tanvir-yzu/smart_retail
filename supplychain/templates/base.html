@@ -25,25 +25,6 @@
                         <a class="nav-link" href="{% url 'order-list' %}">Orders</a>
                     </li>
                 </ul>
-                <ul class="navbar-nav">
-                    {% if user.is_authenticated %}
-                        {% if user.is_superuser %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'admin:index' %}">Admin Panel</a>
-                            </li>
-                        {% endif %}
-                        <li class="nav-item">
-                            <span class="nav-link">Welcome, {{ user.username }}</span>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-                        </li>
-                    {% else %}
-                        <li class="nav-item">
-                            <a href="admin">login</a>
-                        </li>
-                    {% endif %}
-                </ul>
             </div>
         </div>
     </nav>
