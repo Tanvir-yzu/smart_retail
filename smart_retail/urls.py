@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('supplychain.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),  # Includes login, logout URLs
 ]
 
 # serve media files in development environment --------------------------------

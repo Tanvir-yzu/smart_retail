@@ -31,6 +31,9 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap4',
 ]
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
